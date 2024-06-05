@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DUNE</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kodchasan">
+	<style type="text/css">
+		@font-face {
+		    font-family: 'Pretendard-Black';
+		    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Black.woff') format('woff');
+		    font-weight: 900;
+		    font-style: normal;}
+		@font-face {
+		    font-family: 'Pretendard-ExtraBold';
+		    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
+		    font-weight: 800;
+		    font-style: normal;}
+		@font-face {
+		    font-family: 'Pretendard-Bold';
+		    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+		    font-weight: 700;
+		    font-style: normal;}
+		@font-face {
+		    font-family: 'Pretendard-Medium';
+		    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
+		    font-weight: 500;
+		    font-style: normal;}
+		@font-face {
+		    font-family: 'Pretendard-Regular';
+		    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+		    font-weight: 400;
+		    font-style: normal;}
+		@font-face {
+		    font-family: 'Pretendard-Light';
+		    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
+		    font-weight: 300;
+		    font-style: normal;}
+		@font-face {
+		    font-family: 'Pretendard-Thin';
+		    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Thin.woff') format('woff');
+		    font-weight: 100;
+		    font-style: normal;}
+		@font-face {
+		    font-family: 'SOYOMapleBoldTTF';
+		    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/SOYOMapleBoldTTF.woff2') format('woff2');
+		    font-weight: 700;
+		    font-style: normal;}
+
+		body{background-color: black;margin: 0;}
+		h1, h2, h3,h4, p, div{margin: 0;padding: 0;}
+		hr{border: none;
+		  border-top: 1px solid #E88D41;
+		  margin: 0 auto; padding: 10px 0px;}
+		ul{display: flex;}
+		div{display: block;}
+		img{margin: auto;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;}
+		h2{font-family: Kodchasan;
+			text-align: center;
+			font-size: 48px;
+			letter-spacing: 45%;
+			color: #E88D41;}
+		h3{font-family: 'Pretendard-Bold';
+			font-size: 36px;
+			text-align: center;
+			line-height: 45px;
+			color: #E88D41;}
+		h4{font-family: 'Pretendard-Medium';
+			font-size: 24px;
+			text-align: center;
+			line-height: 32px;
+			color: #E88D41;text-shadow: 40% black;}
+		p{font-family: 'Pretendard-Light';font-size: 16px;
+			line-height: 30px;
+			color: white;padding-top: 20px;}
+		.wrap{width: 1000px;
+			padding-top: 40px;
+			margin: auto;
+			position: relative;}
+		nav .menu{display: flex;
+					width: 400px; margin: auto;}
+		nav .menu li{width: 33.3%;
+					list-style-type: none;}
+		nav .menu li a{font-family: Kodchasan;
+					text-align: center;
+					display: block;
+					text-decoration: none;
+					color:#E88D41;}
+		nav .menu li a:hover{color: white;}
+		.menuflex{display:flex;
+					justify-content: space-between}
+		.flex{display: flex; flex-wrap: wrap;justify-content: center;}
+		.mini-title{font-size: 12px;
+			letter-spacing: 20%;}
+		.duniverse{
+			margin: auto; border: 1px solid #E88D41;}
+		.duniverse p{width: 600px;text-shadow:rgba(0,0,0,0.7) 3px blur 40% opacity; }
+
+
+		.text-overlay {
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  padding: 20px;
+		  color: black;
+		  background-color: rgba(0, 0, 0, 0.7);}
+		.popup {
+	      display: none;
+	      position: fixed;
+	      top: 0;
+	      left: 0;
+	      width: 100%;
+	      height: 100%;
+	      z-index: 9999;}
+
+	    .popup-content {
+	      position: absolute;
+	      top: 50%;
+	      left: 50%;
+	      transform: translate(-50%, -50%);
+	      background-color: black;
+	      border: 1px solid #E88D41;
+	      padding: 20px;}
+
+	    .close {
+	      position: absolute;
+	      top: 10px;
+	      right: 10px;
+	      color: #E88D41;
+	      cursor: pointer;}
+
+	    .underline{text-decoration-line: underline;
+	    	text-decoration-color: #E88D41;
+	    	text-decoration-style: solid;
+	    	text-decoration-thickness:1px;}
+	    .follwing-nav{width: 100px;position: sticky;top: 0;padding-top: 20px;}
+	    .width300{width: 300px;margin-right:30px;}
+	    .bg-key{height: 300px;background-image: url(key.png);background-attachment: fixed;background-repeat: no-repeat;color: white;background-position: center;}
+
+	    .cursor a:hover{cursor: zoom-in;}
+	    .small-sub{font-family:'Pretendard-Bold';color: #E88D41;}
+	    div.gallery {
+		  margin: 5px;
+		  border: 1px solid #ccc;
+		  float: left;
+		  width: 180px;}
+
+		div.gallery:hover {
+		  border: 1px solid #777;}
+
+		div.gallery img {
+		  width: 100%;
+		  height: auto;}
+
+		div.desc {
+		  padding: 15px;
+		  text-align: center;}
+
+		@keyframes blink {
+		  0% {
+		    opacity: 1;}
+		  50% {
+		    opacity: 0;}
+		  100% {
+		    opacity: 1;}}
+
+		.blink{animation: blink 5s infinite;}
+		.flip-card__content, .flip-card__hover {
+		    bottom: 0;
+		    left: 0;
+		    position: absolute;
+		    right: 0;
+		    top: 0;}
+		.flip-card--active, .flip-card__hover {
+    		z-index: 1;}
+
+    	.image-container {
+		  position: relative;
+		  display: inline-block; 
+		  width: 900px;
+		  height: 450px;
+		  margin-left: 50px;}
+
+		.image-container img {
+		  display: block;
+		  width: 100%;
+		  height: auto;
+		  transition: filter 0.3s ease;}
+
+		.overlay {
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+		  opacity: 0;
+		  background-color: rgba(0, 0, 0, 0.2);
+		  transition: opacity 0.3s ease;
+		  align-items: center;
+		  justify-content: center;}
+
+		.image-container:hover img {
+		  filter: blur(2px) brightness(70%);}
+
+		.image-container:hover .overlay {
+		  opacity: 1;}
+
+		.text {overflow: auto;
+			position: absolute;
+			background: cover;
+			width: 600px;}
+		.image-container:hover .text {opacity: 1;}
+		.planet{}
+
+		.planet .loader{position: relative;width: 650px;height: 650px;border-radius: 50%;}
+		.planet .loader:before
+			{conetent:'';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 50%;height: 100%;background: linear-gradient(to top, transparent, rgba(0,255,249,0.4));
+			background-size: 200px 360px;
+			background-repeat: no-repeat;
+			background-top-left-radius:200px;
+			}
+		.planet .loader:after
+			{conetent:'';
+			position: absolute;
+			top: 0;
+			left: 0;
+			transform: translateX(-50%);
+			width: 10px;
+			height: 10px;
+			background: #E88D41;
+			border-radius: 50%;
+			z-index: 10;
+			box-shadow: 0 0 10px #00fff9,
+						0 0 20px #00fff9,
+						0 0 30px #00fff9,
+						0 0 40px #00fff9,
+						0 0 50px #00fff9,
+						0 0 60px #00fff9,
+						0 0 70px #00fff9,
+						0 0 80px #00fff9,
+						0 0 90px #00fff9,
+						0 0 100px #00fff9,
+			}
+		.planet .loader span
+			{
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			right: 10px;
+			bottom: 10px;
+			background: #E88D41
+			border-radius: 50%;
+			}
+		.arakis{
+			border-radius: 50%;
+			background-size: cover;
+			box-shadow: inset 0 0 20px #E88D41, 0 0 120px #E88D41;
+			animation: animationarakis 20s linear infinite;}
+
+		@keyframes animationarakis{
+			0%{
+				background-position: 0;
+				}
+				100%{
+					background-position: 162.5;
+					}
+			}
+
+	</style>
+</head>
+<body>
+	<nav>
+		<div class="wrap menuflex">
+			<div class="logo"></div>
+			<ul class="menu kodchasan-medium">
+				<li>
+					<a href="#aaa">DUNIVERSE</a>
+				</li>
+				<li>
+					<a href="#bbb">SPICE</a>
+				</li>
+				<li>
+					<a href="#ccc">POLITICAL<br>STRUCTURE</a>
+				</li>
+				<li>
+					<a href="#ddd">FILM</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<header class="wrap">
+		<img src="title.png" style="size: 80%;align-content: center;padding-bottom: 50px;">
+	</header>
+	<iframe width="100%" height="500" src="https://www.youtube.com/embed/n9xhJrPXop4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	
+	<section style="padding-top: 100px;" id="ccc">
+		<div class="wrap">
+			<h2>DUNIVERSE</h2>
+			<hr style="width: 300px;">
+			<h2 class="mini-title">The things you should know about before you watch DUNE</h2>
+			<div class="image-container duniverse" style="margin-top: 50px;">
+				<img src="duniverse1.png">
+				<div class="overlay">
+					<p class="text" style="margin: auto; padding: 40px 0 0 150px; ">과거의 사람들은 자신들이 자유로워지기 위해 생각하는 기능을 기계에 넘겼습니다. 하지만 기계를 가진 소수의 사람들이 다른 사람들을 노예로 삼는 결과를 낳았고 사람들은 이에 저항해 반기계 운동 ‘부틀리안 지하드’를 일으키게 됩니다.</p>
+				</div>
+			</div>
+			<div class="image-container duniverse" style="margin-top: 50px;">
+				<img src="duniverse2.jpg">
+				<div class="overlay">
+					<p class="text" style="margin: auto; padding: 40px 0 0 150px; ">덕분에 ‘인간의 정신을 본 뜬 기계를 만들어서는 안 된다.’ 라는 문장이 탄생했고 인공 지능을 개발하는 대신 인간의 정신과 육체를 수련하는, 인간의 잠재력에 중심을 둔 극단적인 인간 중심주의 방향으로 역사가 발전됩니다.</p>
+				</div>
+			</div>
+			<div class="image-container duniverse" style="margin-top: 50px;">
+				<img src="duniverse3.png">
+				<div class="overlay">
+					<p class="text" style="margin: auto; padding: 300px 0 0 250px;">인공지능과 사고하는 기계에 대한 전쟁인 부틀리안 지하드 이후, 인류는 컴퓨터와 같은 고도의 기술을 사용하는 것이 금지되었고, 이로 인해 우주 항행을 위한 새로운 방법이 필요하게 되었습니다. 이때 우주 조합이라는 단체가 스파이스로 얻은 예지력을 통해 안전한 항로를 찾는 방법을 발견하게 됩니다.</p>
+				</div>
+			</div>
+			<div class="image-container duniverse" style="margin-top: 50px;">
+				<img src="duniverse4.png">
+				<div class="overlay">
+					<p class="text" style="margin: auto; padding: 260px 0 0 50px; ">우주 조합 내 파일럿들로 구성된 네비게이터 길드의 변이인간들은 스파이스를 대량으로 섭취하여 우주선을 안전하게 조종할 수 있는 예지력을 갖게 되었습니다. 그들은 미래를 보고 수많은 항로를 시뮬레이션한 뒤 우주선이 장애물과 부딪히지 않는 길을 선별해 내  계산합니다. 오로지 스파이스로 얻은 예지력을 통해 안전한 항로를 찾았기 때문에 스파이스에 대한 의존도가 높아졌으며, 우주 조합은 우주 항행 및 교역을 독점하게 되었습니다.</p>
+				</div>
+			</div>
+			<div class="image-container duniverse" style="margin-top: 50px;">
+				<img src="duniverse5.jpg">
+				<div class="overlay">
+					<p class="text" style="margin: auto; padding: 40px 0 0 150px; ">결국 스파이스는 매우 필수적인 물질이 되었으며, 스파이스를 차지하기 위해 아라키스를 무대로 <br>많은 이권다툼이 일어나게 됩니다.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section style="padding-top: 150px;">
+		<div style="padding-top: 100px;">
+			<h2>TRAPPIST</h2>
+			<hr style="width: 300px;">
+			<img src="trappist.png" style="height: 400px;">
+		</div>
+		<h2>DUNE</h2>
+		<h2 style="font-size: 24px;">ARAKIS</h2>
+		<hr style="width: 180px;">
+		<h2 class="mini-title" style="padding-bottom: 20px;">DESERT PLANET</h2>
+		<div style="width: 600px;cursor:pointer; margin: auto;alt=(arrakis)"onclick="openPopup()" onmouseover="this.style.border = '3px solid white';" onmouseleave="this.style.border='none';">
+			<div class="loader"><span></span></div>
+			<img class="arakis" src="arakis.png">
+		</div>
+		<div id="popup" class="popup">
+		    <div class="popup-content" style="width: 500px;margin: auto;">
+		      <h2>DUNE</h2>
+		      <h2 style="font-size: 24px;">ARAKIS</h2>
+		      <hr style="width: 180px;">
+		      <h2 class="mini-title">DESERT PLANET</h2>
+		      <p style="text-align: center;">아라키스(Arrakis)는 듄 시리즈에서 가장 중요한 행성으로,"듄(Dune)"이라는 별명으로도 불립니다.</p>
+		      <p style="text-align: center;">아라키스는 듄 시리즈의 중심 무대로, 스토리의 핵심 사건들이 이 행성에서 벌어집니다. 사막, 스파이스, 프레멘, 모래 벌레 등 아라키스의 특징적인 요소들은 듄 세계관을 상징합니다.</p>
+		      <span class="close" onclick="closePopup()">&times;</span>
+		    </div>
+		  </div>
+
+		  <script>
+		    function openPopup() {
+		      document.getElementById("popup").style.display = "block";}
+
+		    function closePopup() {
+		      document.getElementById("popup").style.display = "none";}
+		  </script>
+	</section>
+	<section style="margin-top: 150px;height:450px;background-image: url(spice1.jpg);"></section>
+	<section>
+		<div class="wrap">
+			<h2>SPICE</h2>
+			<hr style="width: 300px;">
+			<h2 class="mini-title">Spice-melange</h2>
+			<div style="width: 900px;margin: auto; padding-top: 50px;">
+				<p style="font-family:'Pretendard-Bold' ;color:#E88D41;">섭취 시 효과</p>
+						<p>- 수명 연장<br>- 예지력</p>
+				<div class="flex">
+					<div style="width: 400px;">
+						<p>우주에서 가장 비싼 물질이며, 스파이스 한 줌이면 집 한 채를 살 수 있습니다. 스파이스가 비싼 이유는 초광속 성간 여행을 하기 위해서는 스파이스를 섭취 시 예지력을 얻어 항로를 발견하기 때문입니다.</p>
+						<p>듄 세계관에서는 흔히 대가문이 등장하고 이들은 행성(계)를 영지로 두는 가문들이 존재하는데, 그들에게 스파이스는 우리에게 석유나 반도체처럼 필수적인 재료입니다.</p>
+					</div>
+					<div style="width: 400px; margin-left: 30px;">
+						<p>그러나 석유나 반도체처럼 스파이스 자체가 연료 역할이나 엔진 역할을 하는 것은 아니며, 우주 항로를 예지하는 데에 필수적인 물질입니다.</p>
+						<p>이러한 스파이스가 오로지 아라키스 행성에서만 생성되면서 희소성은 더욱 강해지고 모든 이권의 중심이 되는 결과를 낳습니다.</p>
+						<p>스파이스 멜란지는 듄 세계관에서 권력, 욕망, 종교, 문화 등 다양한 측면을 아우르는 핵심 요소입니다. 스파이스를 둘러싼 갈등과 경쟁은 듄 시리즈의 중심 주제 중 하나이며, 등장인물들의 운명에 결정적인 영향을 미칩니다.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section style="padding-top: 100px;">
+		<div class="wrap" style="height: 700px;background-image: url(Diamond.png);">
+			<div class="flex" style="padding-top: 100px; ">
+				<div style="width: 180px;">
+					<h3 style="color: black;font-size: 32px;">희소성</h3>
+					<p style="color: black;font-size: 11px;line-height: 18px;">- 스파이스는 아라키스 행성에서만 발견되는 희귀한 물질입니다.</p>
+					<p style="color: black;font-size: 11px;line-height: 18px;">- 극한의 환경과 거대 모래 벌레로 인해 채취가 어렵고 위험합니다.</p>
+				</div>
+				<div style="width: 180px;margin: 0 130px 0 130px;">
+					<h3 style="color: black;font-size: 32px;">항정신성</h3>
+					<p style="color: black;font-size: 11px;line-height: 18px;">- 스파이스를 섭취하면 정신적 능력이 확장되고, 예지력과 같은 특별한 능력을 얻을 수 있습니다.</p>
+					<p style="color: black;font-size: 11px;line-height: 18px;">- 과다 복용 시 중독되거나 부작용이 나타날 수 있습니다.</p>
+				</div>
+				<div style="width: 180px;">
+					<h3 style="color: black;font-size: 32px;">항노화 효과</h3>
+					<p style="color: black;font-size: 11px;line-height: 18px;">- 스파이스는 노화를 지연시키고 수명을 연장하는 효과가 있습니다.</p>
+					<p style="color: black;font-size: 11px;line-height: 18px;">- 귀족들과 황제는 스파이스를 이용해 장수하고 권력을 유지합니다.</p>
+				</div>
+			</div>
+			<div class="flex" style="padding-top: 130px;">
+				<div style="width: 180px;">
+					<h3 style="color: black;font-size: 32px;">우주 항행<br>필수품</h3>
+					<p style="color: black;font-size: 11px;line-height: 18px;">- 스파이스는 나비게이터들이 우주 항행을 하는 데 필수적인 물질입니다.</p>
+					<p style="color: black;font-size: 11px;line-height: 18px;">- 스파이스를 통해 깨달음을 얻은 나비게이터들은 안전하게 우주선을 조종할 수 있습니다.</p>
+				</div>
+				<div style="width: 180px;margin: 0 130px 0 130px;">
+					<h3 style="color: black;font-size: 32px;">경제적 가치</h3>
+					<p style="color: black;font-size: 11px;line-height: 18px;">- 스파이스는 은하 제국에서 가장 귀중한 자원으로, 엄청난 경제적 가치를 지닙니다.</p>
+					<p style="color: black;font-size: 11px;line-height: 18px;">- 스파이스 무역을 둘러싼 권력 다툼이 듄 시리즈의 주요 갈등 중 하나입니다.</p>
+				</div>
+				<div style="width: 180px;">
+					<h3 style="color: black;font-size: 32px;">프레맨의 문화</h3>
+					<p style="color: black;font-size: 11px;line-height: 18px;">- 프레멘 족은 스파이스를 신성한 물질로 여기며, 그들의 문화와 의식에 스파이스를 활용합니다.</p>
+					<p style="color: black;font-size: 11px;line-height: 18px;">- 스파이스는 프레멘 족의 정체성과 운명에 깊이 연관되어 있습니다.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section style="padding-top: 150px;">
+		<div class="wrap">
+			<p style="text-align: center; padding-bottom: 60px;">결국 듄은,</p>
+			<h3 style="line-height: 60px;">스파이스를 둘러싼 음모와 계략<br>스파이스를 지배하는 자가 우주를 지배한다<br>Power over spice is power over all</h3>
+			<img src="spice-hand.png">
+			<p style="text-align: center;">라는 큰 흐름을 중심으로 이야기가 전개됩니다.</p>
+		</div>
+	</section>
+	<section style="padding-top: 100px;">
+		<div class="wrap">
+			<h2 style="padding-bottom: 30px;">POLITICAL STRUCTURE</h2>
+			<img class="wrap" src="political.png">
+		</div>
+		<div>
+			<img src="nav1.png" class="follwing-nav" style=" margin-left: 15px;">
+			<div class="wrap">
+				<div>
+					<img src="choam.png" style="width: 330px;margin-left: 335px;">
+					<h2 style="padding-top: 30px;">CHOAM</h2>
+					<hr style="width: 330px;">
+					<div class="flex">
+						<p class="width300"></p>
+						<p class="width300">초암 공사는 스파이스를 독점 공급합니다.<br>어떤 가문이 스파이스 채굴감독권을 갖고 있건 <br>반드시 이 회사를 통해 스파이스를 거래해야 합니다. 통나무, 당나귀, 말 , 소, 똥, 상어 등 우주 조합이 운반할 수 있는 모든 것을 취급합니다.</p>
+						<p class="width300">다만 가문들이 초암 공사의 이익에 의존하고 있고 그 이익은 상당부분 스파이스라는 물질 하나에서 나오고 있습니다. 초암공사를 통하지 않고 스파이스를 거래하는 자들을 밀수꾼(Smugglers)이라고 부릅니다.</p>
+					</div>
+					<div class="flex" style="padding-top: 50px;">
+						<div style="width: 210px;"></div>
+						<div style="width: 180px;">
+							<img src="choam.png" style="height: 120px;">
+							<img src="choam2.png" style="height: 120px;padding-top: 5px;">
+							<h2 style="font-size: 20px; letter-spacing: 20%;padding-top: 10px;">CHOAM</h2>
+						</div>
+						<div style="width: 180px;">
+							<img src="Arrow.png">
+						</div>
+						<div style="width: 180px;">
+							<img src="smugglers-logoB.png" style="height: 120px;">
+							<img src="smugglers.jpg" style="height: 120px;padding-top: 5px;">
+							<h2 style="font-size: 20px; letter-spacing: 20%;padding-top: 10px;">SMUGGLERS</h2>
+						</div>
+					</div>
+					<div class="bg-key">
+						<h4 style="padding-top: 100px;">초암은 부의 열쇠, 초암의 지휘권<br>그것은 제국 내에서 정치적 권력의 진정한 증거였다.</h4>
+						<p style="text-align: center;">-듄1권-</p>
+					</div>
+					<p style="width: 600px; text-align: center;margin: auto;padding-top: 80px;">초암공사는 회사이기 때문에 여러 가문들과 단체들이 주식처럼 지분을 나눠 가지고 있습니다.<br>심지어 제국 황제의 샤담4세 조차도 예외가 아니며 소설에서는 황제와 그의 지지자들에 의해<br>과반수를 점거하고 있다고 언급됩니다.</p>
+					<p style="width: 600px; text-align: center;margin: auto;">따라서 아트레이데스 가문이 가문들 사이에서 덕망이 높아지면 초암 공사의 지휘권이 황제에서<br>아트레이데스 가문으로 넘어갈 수 있다는 뜻이 됩니다.</p>
+				</div>
+				<div class="flex" style="padding-top: 80px;">
+					<p style="width: 100px;"></p>
+					<p style="width: 100px;"></p>
+					<img src="choam3.png" style="width: 200px;">
+					<p style="width: 300px; text-align: center;padding-top: 70px;">황제와 그의 지지자들은 현재 초암 지휘권의<br>투표수에서 59.65%를 차지하고 있다.<br>-듄 1권-</p>
+					<p style="width: 130px;"></p>
+					<p style="width: 100px;"></p>
+				</div>
+			</div>
+			<div class="wrap" style="padding-top: 300px;">
+				<img src="spacing-guild.png" style="width: 400px;padding-left:300px;">
+				<h2 style="padding-top: 50px;">3대세력</h2>
+				<hr style="width: 330px;">
+				<h2 class="mini-title">황실, 랜드스라드, 우주 조합</h2>
+				<p style="text-align: center;padding-top: 30px;">이들의 권력은 스파이스에 따라 좌지우지 된다.</p>
+				<div class="flex" style="padding-top: 50px;">
+					<div class="width300">
+						<div style="alt=()"onclick="openPopup()">
+						<img src="house-corrino-logo-w.png" style="alt=()"onclick="openPopup()" onmouseover="this.style.border = '3px solid white';" onmouseleave="this.style.border='none';">
+						</div>
+						<div id="popup" class="popup">
+						    <div class="popup-content" style="width: 900px;margin: auto;">
+						      <h2>HOUSE CORRINO</h2>
+						      <hr style="width: 180px;">
+						      <h2 class="mini-title">The Emperial House</h2>
+						      <p>먼저 황실은 샤담 4세가 황제로 즉위해 있는 코리노 가문입니다. 그들의 실질적인 권력은 제국 황제의 군대 사다우카로부터 나옵니다. 황제의 보조 부대와 사다우카 군은 대가문 전체 군대와 맞먹는 전투력을 가지고 있다 묘사됩니다. 게다가 황제가 실질적으로 두려워한 건 아트레이데스 가문의 군사력인데, 황제의 힘이 그의 군대 사다우카에서 나오기 때문입니다.</p>
+						      <p style="text-align: center;">황제가 아트레이데스 가문에 등을 돌린 건, 공작의 전쟁 참모인 거니 할렉과 던컨 아이다호가 사다우카에 버금가는 전력을 훈련시켰기 때문입니다.</p>
+						      <p style="text-align: center;">– 듄 1권 -</p>
+						      <div style="background-color: #E88D41;"></div>
+						      <span class="close" onclick="closePopup()">&times;</span>
+						    </div>
+						  </div>
+
+						  <script>
+						    function openPopup() {
+						      document.getElementById("popup").style.display = "block";}
+
+						    function closePopup() {
+						      document.getElementById("popup").style.display = "none";}
+						  </script>
+					</div>
+					<div class="width300">
+						<div style="alt=()"onclick="openPopup()">
+						<img src="landsrrad.jpg" style="alt=()"onclick="openPopup()" onmouseover="this.style.border = '3px solid white';" onmouseleave="this.style.border='none';">
+						</div>
+						<div id="popup" class="popup">
+						    <div class="popup-content" style="width: 900px;margin: auto;">
+						      <h2>Landsraad</h2>
+						      <hr style="width: 180px;">
+						      <h2 class="mini-title">The confederation of Families</h2>
+						      <p style="text-align: center;">아라키스(Arrakis)는 듄 시리즈에서 가장 중요한 행성으로,"듄(Dune)"이라는 별명으로도 불립니다.</p>
+						      <p style="text-align: center;">아라키스는 듄 시리즈의 중심 무대로, 스토리의 핵심 사건들이 이 행성에서 벌어집니다. 사막, 스파이스, 프레멘, 모래 벌레 등 아라키스의 특징적인 요소들은 듄 세계관을 상징합니다.</p>
+						      <span class="close" onclick="closePopup()">&times;</span>
+						    </div>
+						  </div>
+
+						  <script>
+						    function openPopup() {
+						      document.getElementById("popup").style.display = "block";}
+
+						    function closePopup() {
+						      document.getElementById("popup").style.display = "none";}
+						  </script>
+					</div>
+					<div class="width300">
+						<div style="alt=(space)"onclick="openPopup()">
+						<img src="spacingguild.png" style="alt=(arrakis)"onclick="openPopup()" onmouseover="this.style.border = '3px solid white';" onmouseleave="this.style.border='none';">
+						</div>
+						<div id="popup" class="popup">
+						    <div class="popup-content" style="width: 900px;margin: auto;">
+						      <h2>DUNE</h2>
+						      <h2 style="font-size: 24px;">ARAKIS</h2>
+						      <hr style="width: 180px;">
+						      <h2 class="mini-title">DESERT PLANET</h2>
+						      <p style="text-align: center;">아라키스(Arrakis)는 듄 시리즈에서 가장 중요한 행성으로,"듄(Dune)"이라는 별명으로도 불립니다.</p>
+						      <p style="text-align: center;">아라키스는 듄 시리즈의 중심 무대로, 스토리의 핵심 사건들이 이 행성에서 벌어집니다. 사막, 스파이스, 프레멘, 모래 벌레 등 아라키스의 특징적인 요소들은 듄 세계관을 상징합니다.</p>
+						      <span class="close" onclick="closePopup()">&times;</span>
+						    </div>
+						  </div>
+
+						  <script>
+						    function openPopup() {
+						      document.getElementById("popup").style.display = "block";}
+
+						    function closePopup() {
+						      document.getElementById("popup").style.display = "none";}
+						  </script>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<img src="nav2.png" class="follwing-nav" style=" margin-left: 15px;">
+			<div class="wrap" style="padding-top: 200px;">
+				<img src="fremensymbol.png" style="width: 330px;margin-left: 335px;">
+				<h2 style="padding-top: 30px;">FREMEN</h2>
+				<hr style="width: 330px;">
+			</div>
+			<div class="wrap flex">
+				<div class="width300"></div>
+				<div class="width300">
+					<p>프레멘(Fremen)은 사막 행성 아라키스의 토착 부족입니다. 그들은 혹독한 사막 환경에 적응하여 살아가며, 독특한 문화와 신념 체계를 가지고 있습니다.</p>
+					<p class="small-sub">문화와 관습</p>
+					<p>- 프레멘은 물의 중요성을 강조하는 문화를 가지고 있습니다. 그들은 물을 아끼고 보존하는 것을 최우선으로 여깁니다.<br>- 그들은 사막에서의 생존술, 전투 기술, 생태학적 지식 등을 높이 평가합니다.<br>- 프레멘은 강한 공동체 의식을 가지고 있으며, 부족 내 결속력이 매우 높습니다.</p>
+					<p class="small-sub">종교와 신념</p>
+					<p>- 프레멘은 독특한 종교인 "제이 킬라(Zensunni)"를 믿습니다. 이는 이슬람교와 불교의 혼합형으로, 금욕적이고 내세지향적인 성격을 띕니다.<br>- 그들은 언젠가 메시아적 인물인 마디-리샤드(Mahdi-Lisan al-Gaib)가 나타나 자신들을 구원할 것이라 믿습니다.<br>- 프레멘은 샤이-훌루드(Shai-Hulud)라 불리는 거대 모래 벌레를 신성시하며, 그들의 일부로 여깁니다. 장거리 이동 시 모래 벌레를 이용하기도 합니다.</p>
+					<p>아라키스하면 살루사 세쿤더스 못지 않게 극한의 환경을 자랑합니다. 물 한 점 없는 사막 뿐이고 태양열도 너무 뜨거워 온도에 인부들이 작업을 하지 못할 정도인데요. 게다가 급속도로 찢어버리는 강력한 모래폭풍까지 있습니다. </p>
+				</div>
+				<div class="width300">
+					<img src="fremen.png" style="height: 150px;margin-top: 25px;border: 1px solid #E88D41;">
+					<p>그리고 필름북에 묘사에 따르면 프레멘 여자와 아이들도 남자 못지 않게 폭력적이고 사나우며 사막복과 주바 망토를 직접 고안해 낼 만큼 지혜롭습니다. 하코넨은 프레멘의 전체 인구수를 5만명 정도로 예상했지만 아트레이데스가 선발대로 보낸 던컨 아이다호의 보고에 따르면 프레멘의 인구수가 수백 만명에 달한다고 알립니다.</p>
+					<p>그리고 폴이 직접 본 그들은 공포의 대상인 모래벌레들을 탈 것으로 타고 다니는 등 훨씬 더 인상적인 능력을 가지고 있었습다. 하코넨과 황제의 계략에 아트레이데스는 멸망하고 폴과 첩 제시카는 사막으로 도망칩니다. 이방인인 폴이 프레멘에게 스며들 수 있었던 중요한 키포인트가 바로 예언이었고, 그 미신을 깔아놓은 건 베네 게세리트였습다.</p>
+				</div>
+			<div style="margin-top: 50px;">
+				<div class="image-container duniverse" style="margin-top: 50px;">
+				<img src="lisan.png">
+				<div class="overlay">
+					<p class="text" style="margin: auto; padding: 40px 0 0 150px; ">덕분에 ‘인간의 정신을 본 뜬 기계를 만들어서는 안 된다.’ 라는 문장이 탄생했고 인공 지능을 개발하는 대신 인간의 정신과 육체를 수련하는, 인간의 잠재력에 중심을 둔 극단적인 인간 중심주의 방향으로 역사가 발전됩니다.</p>
+					<h3 style="margin: auto; padding: 40px 0 0 300px; color: white; font-size: 24px;">리산 알 가입(Lisan Al-Gaib)</h3>
+					<p style="width: 400px;margin: auto; padding: 40px 0 0 150px;">프레멘들 사이에는 전설이 있습니다. 리산 알 가입(Lisan Al-Gaib;외계에서 온 목소리), 메시아 전설에서 다른 행성 출신 예언자를 가리키는 말입니다. 또한 프레멘은 ‘마디(Mahdi;우리를 낙원으로 이끌어줄 자)’라는 표현을 쓰기도 하는데 메시아 전설에서 폴과 제시카가 아라키스에 등장하자마자 그들을 향해 리산 알 가입 마디라고 외칩니다. 전설 중에 베네 게세리트의 아이인 지도자가 나타나서 자기들을 진정한 자유로 이끌어 줄 거라는 예언인 있었기 때문입니다. 이외에도 여러 예언이 존재하는데 모든게 폴과 부합하는데, 그럴 수 있었던 것이 모든 것은 베네 게세리트가 뿌린 미신이었습니다.</p>
+				</div>
+			</div>
+			<div class="wrap" style="padding-top: 50px;">
+				<h3 style="font-size: 24px;">샤이-훌루드(Shai-Hulud)</h3>
+				<img style="padding-top: 10px;" src="worm.gif">
+				<p style="text-align: center;"> 프레멘은 샤이-훌루드를 신성한 존재로 여기며, 그들의 일부로 받아들입니다. 장거리 이동수단으로 사용하기도 합니다.</p>
+			</div>
+		</div>
+		<div style="padding-top: 200px;">
+			<div class="wrap">
+				<img src="bene-logo.png" style="width: 330px;padding-left: 330px;">
+				<h2 style="padding-top: 30px;">BENE GESSERIT</h2>
+				<hr style="width: 400px;">
+			</div>
+			<div class="wrap flex">
+				<div style="width: 300px;">
+					<p class="small-sub">베네 게세리트의 기원</p>
+					<p style="padding-bottom: 15px;">베네 게세리트는 일반인들과 비교하여 초인적인 능력을 가진 여성 마술사들로부터 시작하였습니다.</p>
+					<img src="Bene_gesserit.png" style="height: 200px;border: 1px solid #E88D41;">
+					<p style="padding-bottom: 15px;">이들은 수녀, 종교지도자, 정치가, 과학자 등 다양한 분야에서의 전문가들이었으며, ‘황금의 길’이라고 불리는 퀴사츠 헤더락을 만드는 프로젝트를 기획하여 전 인류를 이끌 선지자를 만들고자 합니다. 이들은 버틀리안 지하드를 전후로 결성된 이후 활약하여 인간들의 규합에도 기여를 하였고, 코리노 제국이 공식적으로 설립되기 이전 베네 게세리트라는 집단으로 재결성하였습니다.</p>
+
+					<img src="bene1.png" style="height: 200px;border: 1px solid #E88D41;">
+					<p>베네 게세리트는 인류를 이끌 구원자가 활약할 수 있는 토대를 마련하기 위해, 우성 유전자들을 모으는 작업부터 시작하여, 종교 공학이라고도 불리는 전 우주에 의도적인 구원자 사상을 퍼트리는가 하면, 코리노 제국 내에서도 많은 권력을 쥔 정치집단으로서 자신들의 퀴사츠 헤더락 프로젝트를 위해 수세기에 걸쳐 준비를 하며 전 은하계에 영향력을 떨쳤습니다.</p>
+					
+				</div>
+				<div style="width: 300px; margin-left: 20px;">
+					
+					<p class="small-sub">베네 게세리트의 목적</p>
+					<p>우주 조합이 수학에 관심을 가졌다면 베네 게세리트는 정치에 관심을 가졌습니다. 베네 게세리트의 목적은 인류가 멸망하지 않도록 올바른 방향으로 이끌어 가는 것입니다. 기계 때문에 인간이 <br>한 번 사라질 뻔했으니 거기에 대한 반사 작용으로 생긴 단체인 것이죠.</p>
+					<p>베네 게세리트는 퀴사츠 해더락이라 불리는 남자 베네 게세리트를 만드는 것이 목표입니다. 그들은 여자 선조들의 기억만을 볼 수 있는데 퀴사츠 헤더락은 남자와 여자 선조의 기억을 모두 볼 수 있고 미래까지도 볼 수 있으니 모든 걸 아는 그가 인류를 올바른 방향으로 이끌어줄 거라 믿은 것이죠. 과거와 미래를 볼 수 있는 자, 더 나은 미래로 인도할 사람이 퀴사츠 해더락입니다. 그래서 퀴사츠 해더락의 의미도 차콥사 어로 길을 단축하는 것을 의미합니다. 그 결과 그들은 퀴사츠 해더락을 탄생시키기 위해 족보를 관리하고 교배도 그에 따라 인위적으로 진행합니다.</p>
+					<p style="padding-bottom: 15px;">베네 게세리트는 거의 딸만 낳고 황제가 딸만 있는 것도 아내가 베네 게세리트로 임신한 자식의 성별을 조작했기 때문입니다. 그러나 레토 공작의 첩인 제시카는 남편을 너무 사랑한 나머지 베네 게세리트의 명령을 무시한 채 아들을 낳게 됩니다. 레토 공작은 가문의 영향력을 생각해서 제시카를 첩으로 두어 누구든 아내로 맞이할 수 있다는 가능성을 남겨두는 한편 제시카를 진심으로 사랑해서 그외에 첩과 아내를 들이지는 않습니다.</p>
+					<img src="bene2.gif" style="height: 200px;border: 1px solid #E88D41;">
+					<p style="padding-bottom: 15px;">폴도 아버지와 닮아서 그런지 황제의 딸을 아내로 맞이해 황좌를 장악하려 하지만 훗날 챠니를 어머니처럼 첩으로 두려해서 그녀에게 상처를 주게 됩니다.</p>
+					<img src="bene3.png" style="height: 200px;border: 1px solid #E88D41;">
+					
+				</div>
+				<div style="width: 300px;margin-left: 20px;">
+					
+					<p class="small-sub">베네 게세리트의 능력</p>
+					<p>베네 게세리트는 여러 능력을 가진 만능꾼이라 모습을 드러내지 않고 여러 가문과 협업합니다. 행성에 보호 선교단을 보내 미신을 뿌려 훗날 그 행성에 도착한 베네 게세리트가 정치, 종교적으로 선동하기 쉽게 만들어 놓습니다.</p>
+					<p style="padding-bottom: 15px;">차콥사 어나 포타니 집 어와 같이 고대 언어를 포함한 여러 언어(수화포함)에 통달해있고 경영 분야 훈련을 받아 비서 노릇도 합니다. 그리고 근육과 신경 통제력까지 훈련해서 지문 인식 잠금 장치를 지문을 변형시켜 열거나 임신한 태아의 성별까지 의도적으로 선택하고 체내에 들어온 독을 분해할 수도 있습니다. 목소시라는 능력으로 상대방을 조종할 수도 있으며 관찰력이 뛰어나 상대의 신체 반응만으로 진실을 말하는지 판별할 수 있습니다. 여자라고 해서 약한 것도 아니며 프레멘과 겨룰 만큼 전투력도 강합니다.</p>
+					<img src="bene4.png" style="height: 200px;border: 1px solid #E88D41;">
+					<p>능력만 보면 베네 게세리트가 전 우주를 통일하고도 남았을 법한데 경전의 말에</p>
+					<p style="color: #E88D41;">‘나는 베네 게세리트이다. 나는 오로지 봉사하기 위해 존재한다. – 오렌지 가톨릭 성경’</p>
+					<p>라는 말이 있는 만큼 수도원처럼 종교적인 절제와 엄격한 규율 중시합니다. 뛰어난 능력을 오로지 인류의 미래에만 걸고 자신의 욕망을 억누르죠 그들은 특정한 유전 형질을 우성으로 확립시키기 위해 필요하다면 친척 간의 교배도 진행합니다. 베네 게세리트 중에는 자기 조상이 누군지도 모르는 사람도 많고 유전적 혈통은 그들의 문서에 기록되어 있습니다. 영화 파트1에서 황제의 대모와 제시카 유에의 아내가 베네 게세리트입니다.</p>
+				</div>
+			</div>
+			<div style="padding: 50px 0px;">
+				<div style="background-image: url(quizat.png);padding: 30px 0px 120px 30px;">
+					<h3 style="font-size: 24px;text-align: left;text-shadow: 0 0 5px black, 0 0 2px black;width: 400px;">퀴사츠 헤더락(Quizat Haderach)</h3>
+					<p style="text-shadow: 0 0 5px black, 0 0 2px black;width: 400px;">베네 게세리트는 퀴사츠 해더락이라 불리는 남자 베네 게세리트를 만드는 것이 목표입니다. 그들은 여자 선조들의 기억만을 볼 수 있는데 퀴사츠 헤더락은 남자와 여자 선조의 기억을 모두 볼 수 있고 미래까지도 볼 수 있으니 모든 걸 아는 그가 인류를 올바른 방향으로 이끌어줄 거라 믿은 것이죠. 과거와 미래를 볼 수 있는 자, 더 나은 미래로 인도할 사람이 퀴사츠 해더락입니다.<br>그래서 퀴사츠 해더락의 의미도 차콥사 어로 길을 단축하는 것을 의미합니다. 그 결과 그들은 퀴사츠 해더락을 탄생시키기 위해 족보를 관리하고 교배도 그에 따라 인위적으로 진행합니다.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer>
+		<div class="wrap menuflex">
+			<p style="color: #E88D41;">한혜원&copy;2024 모든 권리 보유.</p>
+			<a href="#top">
+				<img src="foot-logo.png" style="top: 58px;width: 21%;height: auto;position: absolute;left: calc(50% - 74px);">
+			</a>
+			<p style="color: #E88D41;">raum_uni@naver.com</p>
+		</div>
+	</footer>
+</body>
+</html>
